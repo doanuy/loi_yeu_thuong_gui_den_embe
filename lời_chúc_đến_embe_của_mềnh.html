@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password of Love</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff7f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #f7d1d4;
+            border-radius: 15px;
+            background-color: #ffffff;
+        }
+        .container h2 {
+            color: #ff7a85;
+        }
+        .container input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #f7d1d4;
+            border-radius: 5px;
+        }
+        .container button {
+            background-color: #ff7a85;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #ff5a6f;
+        }
+        .second-screen, .third-screen {
+            display: none;
+        }
+        .second-screen img, .third-screen img {
+            width: 200px;
+            margin-bottom: 15px;
+        }
+        .second-screen p, .third-screen p {
+            color: #ff7a85;
+            font-size: 18px;
+        }
+        .third-screen {
+            text-align: left;
+        }
+        .third-screen .message {
+            border: 1px solid #ff5a6f;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff2f3;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* CSS Animation */
+        .animated {
+            animation: pulse 0.6s ease-in-out forwards;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="firstScreen">
+        <h2>Có một lời yêu thương gửi tới bạn 💌</h2>
+        <p>Mật khẩu của trái tim <span style="color: #ff7a85;">❤️</span></p>
+        <input type="password" id="password" placeholder="Nhập vào đây">
+        <p style="font-size: 12px;">Mật khẩu phải ghi liền không dấu*</p>
+        <button onclick="checkPassword()">Đồng ý</button>
+        <p id="message" style="color: red;"></p>
+    </div>
+
+    <div class="container second-screen" id="secondScreen">
+        <img src="h:\nguyen_doan_uy\anh.jpg" alt="Heart Letter">
+        <p>Bấm vào trái tym 💖</p>
+        <button id="heartButton" onclick="clickHeart()">Click Here</button>
+    </div>
+
+    <div class="container third-screen" id="thirdScreen">
+        <p class="message">
+            Gửi người phụ nữ anh yêu thương, chúc em 1 ngày 20/11 đầy may mắn<br>luôn vui vẻ dù có thế nào đi nữa, vẫn có anh ở đây với em<br>nên hãy lạc quan lên nhá, tự tin lên, tin vào bản thân mình nhá.
+            <center>Yêu Em💖.</center>
+        </p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+            if (password === 'anhyeuem') {
+                message.textContent = '';
+                document.getElementById('firstScreen').style.display = 'none';
+                document.getElementById('secondScreen').style.display = 'block';
+            } else {
+                message.textContent = 'Sai mật khẩu, vui lòng thử lại!';
+            }
+        }
+
+        function clickHeart() {
+            const heartButton = document.getElementById('heartButton');
+            
+            // Xóa lớp trước nếu có
+            heartButton.classList.remove('animated');
+            
+            // Đợi 1 khung hình để áp dụng lại animation
+            requestAnimationFrame(() => {
+                heartButton.classList.add('animated');
+            });
+
+            // Thêm độ trễ để animation hoàn thành trước khi chuyển màn hình
+            setTimeout(function() {
+                document.getElementById('secondScreen').style.display = 'none';
+                document.getElementById('thirdScreen').style.display = 'block';
+            }, 600); // thời gian trùng với thời gian animation
+        }
+    </script>
+</body>
+</html>
